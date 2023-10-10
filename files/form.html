@@ -12,19 +12,24 @@
     </div>
     <div class="row">
         <div class="col-9 col-s-9">
-            <form>
+            <form method="GET" action="formAction.html">
                 <label for="pname">Seu nome</label><br>
-                <input type="text" id="pnome" name="pnome" value=""><br>
+                <div class="form-group"><input type="text" id="pnome" name="pnome" value=""><br></div>
                 <label for="email">Seu email</label><br>
                 <input type="text" id="email" name="email" value=""><br>
                 <label for="msg">Sua mensagem</label><br>
                 <input type="text" id="msg" name="msg" value=""><br>
+                <div>
+                    <input type="submit" class="form-submit" value="Enviar"> 
+                    <input type="reset" class="form-submit" value="Limpar">
+                </div>
             </form>
         </div>
         <div class="col-3 col-s-12 menu">
             <ul>
-                <li>Home</li>
-                <li>About</li>
+                <a href="index.html">Home</a>
+                <a class="active">Form</a>
+                <a href="about.html" >About</a>
             </ul>
         </div>
     </div>
