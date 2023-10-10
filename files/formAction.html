@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/styles.css">
+    
+    <title>Contato</title>
+</head>
+<body>
+    <script src="code/script.js"></script>    
+    <div>
+
+        <h2 class="header">Dados de Contato</h2>
+
+        <p>JS lê os dados enviados via <b>GET</b> de um Form HTML</p>
+
+        <table>
+            <tr><th>Chave</th><th>Valor</th></tr>
+            <script language=javascript>
+                var params = new Array();
+                params = getParameters();
+                for (let [key, value] of Object.entries(params)) {
+                    document.write("<tr><th>" + key + "</th><td>" + value + "</td></tr>");
+                }
+            </script>
+        </table>
+            <input type=button 
+                   value=" << Retornar" onclick="history.back()">
+</body>
+</html>
