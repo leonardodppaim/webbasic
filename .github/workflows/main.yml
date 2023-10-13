@@ -1,18 +1,26 @@
-on: push
-name: Publish on Netlify
-
+name: Build and Deploy to Netlify
+on:
+  push:
+  pull_request:
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
-    - name: Publish
-      uses: netlify/actions/build@master
-      env:
-        
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        NETLIFY_BASE: site
-        NETLIFY_CMD: npm build
-        NETLIFY_DIR: site/_build
+      # ( Build to ./dist or other directory... )
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './files/'
+          production-branch: master
+         
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
