@@ -9,9 +9,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: 'Deploy'
+  deploy-job:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: leonardodppaim/devops2@main
+                 
+      - name: Netlify Deploy
 
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
