@@ -1,29 +1,30 @@
-name: Build and Deploy to Netlify
+name: CI
+
 on:
   push:
+    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
 jobs:
-    deploy-job:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-
-      # ( Build to ./dist or other directory... )
-
-        - name: Deploy to Netlify
-          uses: action/checkout@v3
-          with:
-            publish-dir: './files'
-            production-branch: master
-            
-            deploy-message: "Deploy from GitHub Actions"
-            enable-pull-request-comment: false
-            enable-commit-comment: true
-            overwrites-pull-request-comment: true
+  
+  deploy-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+     
                  
-        - name: Netlify Deploy
-          env:
-            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-            
-        
+      - name: Netlify Deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          publish-dir: './files/'
+          production-branch: master
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        run: netlify deploy --prod
