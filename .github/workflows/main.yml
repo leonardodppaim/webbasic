@@ -15,7 +15,7 @@ jobs:
         with:
           publish-dir: './files/'
           production-branch: master
-         
+          production-deploy: true
           deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           enable-commit-comment: true
@@ -23,11 +23,6 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          DEPLOY_PROD: true
+          
         timeout-minutes: 1
-      - name: Prod Netlify
-        uses: danakim/gh-action-deploy-netlify@master
-        with:
-            AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-            SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-            DEPLOY_PROD: true
+      
