@@ -121,3 +121,16 @@ html {
     display: inline-flex;
     margin-left: 25px;
 }
+
+
+input[type=text] {
+    height: 50px;
+    }
+
+.imgStamp{
+    background-color: white;
+  border-radius: 50%;
+  height: 200px;
+  object-fit: cover;
+  width: 200px; 
+}
